@@ -661,7 +661,6 @@ def mkLeanServerCapabilities : ServerCapabilities := {
 def initAndRunWatchdogAux : ServerM Unit := do
   let st ← read
   try
-    discard $ st.hIn.readLspNotificationAs "initialized" InitializedParams
     let clientTask ← runClientTask
     mainLoop clientTask
   catch err =>
